@@ -9,16 +9,26 @@ var highscore=localStorage.getItem('highscore');
 holearray.push(new hole());
 var holearray1=[];
 var audio1=["audio1.wav","audio2.wav","audio3.wav","audio4.wav"];
+var canvas=document.querySelector('canvas');
+var ctx= canvas.getContext('2d');
+
+canvas.height=innerHeight-23;
+canvas.width=innerWidth-22;
+var holearray=[];
+var score=0,animation;
+var highscore=localStorage.getItem('highscore');
+holearray.push(new hole());
+var holearray1=[];
+var audio1=["audio1.wav","audio2.wav","audio3.wav","audio4.wav"];
 var audio=new Audio(audio1[Math.floor(Math.random()*4)]);
 function playaudio(){
     audio.play();
 }
 var t=setInterval(playaudio,1000);
-// holearray1.push(new hole());
 var bgsrc=['bgimg8.jpg','bgimg9.jpg','bgimg10.jpg','bgimg11.jpg','bgimg12.jpg'];
 var bg=new Image();
 bg.src=bgsrc[Math.floor(Math.random()*5)];
-// bg.src='bgimg8.jpg';
+
 var background={
     x:0,
     y:0,
@@ -27,13 +37,12 @@ var background={
         if(this.x<=-2516){
             this.x=0;
         }
-        if(score%300>=200 && score%300<=299){
+        if(score%700>=300 && score%700<=399){
             this.x+=0.01*score;
         }
     }
 }
-ctx.fillStyle="black";
-        ctx.fillRect(0,canvas.height-100,canvas.width,100);
+ctx.fillStyle="green";
         ctx.fillRect(0,0,canvas.width,100);
 
 
@@ -49,7 +58,7 @@ var triangle={
      ctx.moveTo(this.x,this.y);
      ctx.lineTo(this.x+70,this.y+100);
      ctx.lineTo(this.x+100,this.y);
-     ctx.fillStyle="black";
+     ctx.fillStyle="green";
      ctx.fill();
      ctx.closePath();
     }
@@ -59,7 +68,7 @@ var triangle={
         ctx.moveTo(this.x,this.y);
         ctx.lineTo(this.x+30,this.y-100);
         ctx.lineTo(this.x+100,this.y);
-        ctx.fillStyle="black";
+        ctx.fillStyle="green";
         ctx.fill();
         ctx.closePath();  
     }
@@ -107,7 +116,7 @@ function obstacle(){
        this.y-=this.dy;
        this.draw2();
       
-       if(score%300>=200 && score%300<=299){
+       if(score%700>=300 && score%700<=399){
         this.x+=.01*score;
         ctx.fillStyle="black";
         ctx.fillText("Enjoy the powerup",1000,350);
@@ -120,6 +129,7 @@ function obstacle(){
                cancelAnimationFrame(animation);
                ctx.fillStyle="black";
                ctx.fillText("Score:"+Math.floor(score) ,1000,200);
+               ctx.fillStyle="green";
                ctx.fillRect(0,canvas.height-100,canvas.width,100);
                triangle.jump();
                highscore1();
@@ -132,6 +142,7 @@ function obstacle(){
                cancelAnimationFrame(animation);
                ctx.fillStyle="black";
                ctx.fillText("Score:"+Math.floor(score) ,1000,200);
+               ctx.fillStyle="green";
                ctx.fillRect(0,canvas.height-100,canvas.width,100);
                triangle.jump();
                highscore1();
@@ -141,6 +152,7 @@ function obstacle(){
     }
 }
 else{
+    ctx.fillStyle="black";
     ctx.fillText("Enjoy the invincibility",900,350);
 }
        
@@ -169,29 +181,27 @@ window.addEventListener("click",function(e){
     }
 })
 
-setInterval(addhole,27000 -10*score);
-setInterval(addhole1,32000-10*score);
+setInterval(addhole,27000 +Math.random()*4000 );
+setInterval(addhole1,32000);
 function hole(){
     this.x=canvas.width;
     this.y=canvas.height-100;
     this.y1=0;
-    // this.x1=canvas.width+Math.random()*200;
     
     this.draw=function(){
-        ctx.fillStyle="black";
+        ctx.fillStyle="green";
         ctx.fillRect(0,canvas.height-100,canvas.width,100);
         triangle.jump();
-        // ctx.globalAlpha=0;
+        
         ctx.fillStyle="white";
         ctx.fillRect(this.x,this.y,200,100);
         
-        // ctx.globalAlpha=1;
         ctx.fillStyle="black";
          ctx.font="30px Consolas";
         ctx.fillText("Score:"+Math.floor(score),1000,200);
     }
     this.draw1=function(){
-        ctx.fillStyle="black";
+        ctx.fillStyle="green";
         ctx.fillRect(0,0,canvas.width,100);
         
         ctx.fillStyle="white";
@@ -218,6 +228,7 @@ function hole(){
       }
     }
     else{
+        ctx.fillStyle="black";
         ctx.fillText("Enjoy the invincibility",900,350);
     }
 }
@@ -240,6 +251,7 @@ function hole(){
         }
     }
     else{
+        ctx.fillStyle="black";
         ctx.fillText("Enjoy the invincibility",900,350); 
     }
     }
@@ -254,12 +266,11 @@ function addhole1(){
 
 function animate(){
     
-    // ctx.clearRect(0,100,canvas.width,canvas.height-100);
     if(holearray1.length>=1 ){
         ctx.clearRect(0,0,canvas.width,100);}
     
   animation=  requestAnimationFrame(animate);
-//   background.render();
+
   for(var i=0;i<holearray.length;i++){
     holearray[i].update();
   }
