@@ -119,7 +119,7 @@ function obstacle(){
        if(score%700>=300 && score%700<=399){
         this.x+=.01*score;
         ctx.fillStyle="black";
-        ctx.fillText("Enjoy the powerup",1000,350);
+        ctx.fillText("Enjoy the powerup",950,350);
     } 
         if(score%700<=600 ){
        for(var i=0;i<obstaclearray.length;i++){
@@ -153,7 +153,7 @@ function obstacle(){
 }
 else{
     ctx.fillStyle="black";
-    ctx.fillText("Enjoy the invincibility",900,350);
+    ctx.fillText("Enjoy the invincibility",850,350);
 }
        
     }
@@ -214,7 +214,7 @@ function hole(){
         if(score%700>=300 && score%700<=399){
             this.x+=.01*score;
             ctx.fillStyle="black";
-            ctx.fillText("Enjoy the powerup",1000,350);
+            ctx.fillText("Enjoy the powerup",950,350);
         }
         
         if(score%700<=600){
@@ -229,7 +229,7 @@ function hole(){
     }
     else{
         ctx.fillStyle="black";
-        ctx.fillText("Enjoy the invincibility",900,350);
+        ctx.fillText("Enjoy the invincibility",850,350);
     }
 }
 
@@ -252,7 +252,7 @@ function hole(){
     }
     else{
         ctx.fillStyle="black";
-        ctx.fillText("Enjoy the invincibility",900,350); 
+        ctx.fillText("Enjoy the invincibility",850,350); 
     }
     }
 }
