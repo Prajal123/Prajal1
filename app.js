@@ -9,17 +9,6 @@ var highscore=localStorage.getItem('highscore');
 holearray.push(new hole());
 var holearray1=[];
 var audio1=["audio1.wav","audio2.wav","audio3.wav","audio4.wav"];
-var canvas=document.querySelector('canvas');
-var ctx= canvas.getContext('2d');
-
-canvas.height=innerHeight-23;
-canvas.width=innerWidth-22;
-var holearray=[];
-var score=0,animation;
-var highscore=localStorage.getItem('highscore');
-holearray.push(new hole());
-var holearray1=[];
-var audio1=["audio1.wav","audio2.wav","audio3.wav","audio4.wav"];
 var audio=new Audio(audio1[Math.floor(Math.random()*4)]);
 function playaudio(){
     audio.play();
@@ -119,7 +108,7 @@ function obstacle(){
        if(score%700>=300 && score%700<=399){
         this.x+=.01*score;
         ctx.fillStyle="black";
-        ctx.fillText("Enjoy the powerup",950,350);
+        ctx.fillText("Enjoy the powerup",900,350);
     } 
         if(score%700<=600 ){
        for(var i=0;i<obstaclearray.length;i++){
@@ -214,7 +203,7 @@ function hole(){
         if(score%700>=300 && score%700<=399){
             this.x+=.01*score;
             ctx.fillStyle="black";
-            ctx.fillText("Enjoy the powerup",950,350);
+            ctx.fillText("Enjoy the powerup",900,350);
         }
         
         if(score%700<=600){
